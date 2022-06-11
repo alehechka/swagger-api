@@ -3,6 +3,7 @@ package rest
 import (
 	"net/http"
 
+	docs "github.com/alehechka/swagger-api/docs"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -17,11 +18,17 @@ func SetupRouter() *gin.Engine {
 }
 
 func RegisterHandlers(engine *gin.Engine) {
-	engine.GET("/", func(ctx *gin.Context) { ctx.Redirect(http.StatusTemporaryRedirect, "/swagger/index.html") })
-	engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	RegisterSwaggerHandlers(engine)
 
 	v1 := engine.Group("/api/v1")
 	RegisterUsersHandlers(v1)
+}
+
+func RegisterSwaggerHandlers(engine *gin.Engine) {
+	engine.GET("/", func(ctx *gin.Context) { ctx.Redirect(http.StatusTemporaryRedirect, "/swagger/index.html") })
+	engine.GET("/swagger/*any", func(ctx *gin.Context) {
+		docs.SwaggerInfo.BasePath = ctx.Request.Host
+	}, ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
 
 func RegisterUsersHandlers(router *gin.RouterGroup) {

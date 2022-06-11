@@ -7,7 +7,6 @@ import (
 
 // @title User API documentation
 // @version 1.0.0
-// @host localhost:3000
 // @BasePath /api/v1
 
 // @contact.name   API Support
