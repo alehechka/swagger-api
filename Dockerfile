@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . ./
 
 RUN go mod download
-RUN go install github.com/swaggo/swag/cmd/swag
+RUN go install github.com/swaggo/swag/cmd/swag@v1.8.2
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
