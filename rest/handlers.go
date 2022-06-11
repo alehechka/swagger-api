@@ -3,6 +3,8 @@ package rest
 import (
 	"net/http"
 
+	"github.com/alehechka/swagger-api/ginshared"
+
 	docs "github.com/alehechka/swagger-api/docs"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -11,6 +13,7 @@ import (
 
 func SetupRouter() *gin.Engine {
 	engine := gin.Default()
+	engine.Use(ginshared.CorsConfigMiddleware)
 
 	RegisterHandlers(engine)
 

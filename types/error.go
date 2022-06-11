@@ -7,3 +7,7 @@ type Error struct {
 }
 
 type Errors []Error
+
+type ErrorsResponse struct {
+	Errors Errors `json:"errors"`
+}

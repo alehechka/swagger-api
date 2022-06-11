@@ -13,7 +13,7 @@ import (
 // @Description get all users
 // @Tags Users
 // @Success 200 {object} types.UsersResponse
-// @Failure 404 {object} types.Errors
+// @Failure 404 {object} types.ErrorsResponse
 // @Router /users [get]
 func getUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"users": []types.User{}})
@@ -25,7 +25,7 @@ func getUsers(c *gin.Context) {
 // @Tags Users
 // @Param id path string true "User ID" Format(uuid)
 // @Success 200 {object} types.UserResponse
-// @Failure 400,404 {object} types.Errors
+// @Failure 400,404 {object} types.ErrorsResponse
 // @Router /users/{id} [get]
 func getUserByID(c *gin.Context) {
 	userID := uuid.MustParse(c.Param("id"))
@@ -44,7 +44,7 @@ func getUserByID(c *gin.Context) {
 // @Accept json
 // @Param user body types.User true "User Data"
 // @Success 201 {object} types.UserResponse
-// @Failure 400,500 {object} types.Errors
+// @Failure 400,500 {object} types.ErrorsResponse
 // @Router /users [post]
 func createUser(c *gin.Context) {
 	c.JSON(http.StatusCreated, types.User{})
@@ -58,7 +58,7 @@ func createUser(c *gin.Context) {
 // @Param id path string true "User ID" Format(uuid)
 // @Param user body types.User true "User Data"
 // @Success 200 {object} types.UserResponse
-// @Failure 400,500 {object} types.Errors
+// @Failure 400,500 {object} types.ErrorsResponse
 // @Router /users/{id} [put]
 func updateUser(c *gin.Context) {
 	userID := uuid.MustParse(c.Param("id"))
@@ -76,7 +76,7 @@ func updateUser(c *gin.Context) {
 // @Tags Users
 // @Param id path string true "User ID" Format(uuid)
 // @Success 204
-// @Failure 400,500 {object} types.Errors
+// @Failure 400,500 {object} types.ErrorsResponse
 // @Router /users/{id} [delete]
 func deleteUser(c *gin.Context) {
 	c.Status(http.StatusNoContent)
