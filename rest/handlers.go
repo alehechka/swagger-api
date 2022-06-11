@@ -30,7 +30,7 @@ func RegisterHandlers(engine *gin.Engine) {
 func RegisterSwaggerHandlers(engine *gin.Engine) {
 	engine.GET("/", func(ctx *gin.Context) { ctx.Redirect(http.StatusTemporaryRedirect, "/swagger/index.html") })
 	engine.GET("/swagger/*any", func(ctx *gin.Context) {
-		docs.SwaggerInfo.BasePath = ctx.Request.Host
+		docs.SwaggerInfo.Host = ctx.Request.Host
 	}, ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
 
