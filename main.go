@@ -5,10 +5,10 @@ import (
 	"github.com/alehechka/swagger-api/rest"
 )
 
-// @title 			User API documentation
-// @description     REST API for Users
-// @version 		1.0.0
-// @BasePath 		/api/v1
+// @title			User API documentation
+// @description		REST API for Users
+// @version			1.0.0
+// @BasePath		/api/v1
 
 // @contact.name   API Support
 // @contact.url    http://www.swagger.io/support
