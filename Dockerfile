@@ -1,6 +1,6 @@
 # BUILD
 
-FROM golang:1.18-alpine as builder
+FROM golang:1.18-alpine as go-builder
 
 WORKDIR /app
 COPY . ./
@@ -17,12 +17,12 @@ RUN go build main.go
 
 # SERVE
 
-FROM alpine:latest
+FROM busybox
 
-COPY --from=builder /app/main server
+COPY --from=go-builder /app/main server
 
 RUN mkdir docs
-COPY --from=builder /app/docs docs
+COPY --from=go-builder /app/docs docs
 
 ENV PORT=80
 ENV GO_ENV="production"
